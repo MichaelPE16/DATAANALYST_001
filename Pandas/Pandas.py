@@ -100,10 +100,12 @@ copia = 4
 # )
 
 # print(orden.iloc[[1, 5], [2, 3]]) # asi puedo ver los registos usando incices numericos
-print(orden)
+# print(orden)
 # print('\n Aqui mostramos el anio y el primedio de Texas \n')
 # print(orden.loc[orden.estado == 'Texas', ['anio', 'promd']])
 # print('\n Aqui mostramos el anio y el primedio para los datos de idice mayor o igual 2 \n')
 # print(orden.loc[orden.index >= 2, ['anio', 'promd']])
 
-print(orden.describe()) # esta funcion nos da valores estadisticos aplicados al dataframe
+# print(orden.describe()) # esta funcion nos da valores estadisticos aplicados al dataframe
+
+##########################################################################################################

@@ -27,7 +27,7 @@ matarray3 = np.array([[[1, 2, 3],
 # print("cambiandole el tipo de dato al array ", matarray3)
 array_cambiado = arrdims.astype(np.float64)
 
-# print('cambiandole el valor al data set con astype', array_cambiado.ndim)
+# print('cambiandole el valor al data set con astype', array_cambiado.ndim , '',  array_cambiado.shape)
 
 
 #indexado y slicing
@@ -91,10 +91,10 @@ transpuestos = arregloshape.T @ arregloshape
 # print(np.cumsum(transpuestos, axis=0))
 
 #tambien podemos obtener valores ramdom
-ramdom = np.random.standard_normal((8, 4))
-print(ramdom)
+# ramdom = np.random.standard_normal((8, 4))
+# print(ramdom)
 
-print(np.mean(ramdom, axis=0))
+# print(np.mean(ramdom, axis=0))
 
 #podemos tambien ordenar los valores
 # print(np.sort(ramdom))

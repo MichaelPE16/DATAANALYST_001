@@ -1,6 +1,12 @@
 import pandas as pd
 import numpy as np
 
+data = pd.read_csv(r'D:\Last\1.DATAENGINEER\PYSPTS\csv\Dataset_Empresa_Fabricante_de_Algodón.csv')
+
+df = pd.DataFrame(data)
+data1 = df[['Beneficio_USD', 'Margen_Beneficio']].head().Margen_Beneficio.std().__round__()
+
+
 # --- 2. EJERCICIOS DE ANÁLISIS AVANZADO DE MANUFACTURA Y RENTABILIDAD ---
 
 # -----------------------------------------------------------------------------------
