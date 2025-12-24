@@ -109,3 +109,8 @@ copia = 4
 # print(orden.describe()) # esta funcion nos da valores estadisticos aplicados al dataframe
 
 ##########################################################################################################
+df = pd.DataFrame([1, 5, 4, 6, 8, None, 87,None , 6])
+
+# print(df)
+# df.dropna(inplace=True)
+# print(df)
