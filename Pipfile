@@ -5,8 +5,14 @@ name = "pypi"
 
 [packages]
 pandas = "*"
-dash = "*"
 dash-bootstrap-components = "*"
+dash = "*"
+dash-renderer = "*"
+dash-core-components = "*"
+dash-html-components = "*"
+shell = "*"
+streamlit = "*"
+matplotlib = "*"
 
 [dev-packages]
 
