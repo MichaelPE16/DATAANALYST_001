@@ -1,8 +1,5 @@
-from os import name
-from turtle import title
 from dash.html import Figure
 import pandas as pd
-from pandas.io.formats import style
 import dash
 import dash_bootstrap_components as dbc
 import plotly.express as px 
