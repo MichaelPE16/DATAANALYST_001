@@ -93,8 +93,14 @@ print(consumo_agua)
 # Descripción: Ordena el DF por 'ID_Pedido'. Calcula el promedio móvil (rolling mean) 
 # de 'Defectos_Unidad' con una ventana de 5. Luego, identifica qué pedidos tienen 
 # defectos al menos 2 veces por encima de ese promedio móvil.
-# -----------------------------------------------------------------------------------
-
+# ----------------------------------------------------------------------------------
+print('\n Identificación de Desempeño Atípico en Defectos. \n')
+dataframe_sorted = dataframe.sort_values(by='ID_Pedido')
+dataframe_sorted['Promedio_Movil'] = dataframe_sorted['Defectos_Unidad'].rolling(window=5, min_periods=1).mean().round(2)
+dataframe_sorted['Atípico'] = (dataframe_sorted['Defectos_Unidad'] > (dataframe_sorted['Promedio_Movil'] * 2))
+print(dataframe_sorted[['ID_Pedido', 'Defectos_Unidad', 'Promedio_Movil', 'Atípico']].head(10))
+print('\n Resultados que si son atipicos \n')
+print(dataframe_sorted[dataframe_sorted['Atípico'] == True][['ID_Pedido', 'Defectos_Unidad', 'Promedio_Movil']])
 
 
 # -----------------------------------------------------------------------------------
@@ -104,7 +110,14 @@ print(consumo_agua)
 # media de Satisfaccion_Cliente específica para los pedidos donde 'Estado_Pedido' es 'Entregado'.
 # Verifica que no queden nulos después de la imputación.
 # -----------------------------------------------------------------------------------
-
+print('\n Imputación Inteligente de Satisfacción. \n')
+dataframe['Satisfaccion_Cliente'] = dataframe['Satisfaccion_Cliente'].fillna(
+    dataframe[dataframe['Estado_Pedido'] == 'Entregado']['Satisfaccion_Cliente'].mean()
+)
+print(dataframe[['ID_Pedido', 'Satisfaccion_Cliente']].head(10))
+print(dataframe.loc[dataframe['Satisfaccion_Cliente'] > 4.8, ['ID_Pedido', 'Satisfaccion_Cliente']])
+print('\n Resultados encontrados NULL',dataframe['Satisfaccion_Cliente'].isna().sum())
+print(dataframe['Satisfaccion_Cliente'][::-1].idxmax('index'))
 
 
 # -----------------------------------------------------------------------------------
