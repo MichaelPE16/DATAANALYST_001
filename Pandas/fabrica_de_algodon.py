@@ -111,10 +111,12 @@ print(dataframe_sorted[dataframe_sorted['Atípico'] == True][['ID_Pedido', 'Defe
 # Verifica que no queden nulos después de la imputación.
 # -----------------------------------------------------------------------------------
 print('\n Imputación Inteligente de Satisfacción. \n')
-dataframe['Satisfaccion_Cliente'] = dataframe['Satisfaccion_Cliente'].fillna(
+dataframe['Satisfaccion_Cliente'].fillna(
     dataframe[dataframe['Estado_Pedido'] == 'Entregado']['Satisfaccion_Cliente'].mean()
 )
+print('\nEsta es la satisfaccion Promedio de los Clientes ',dataframe['Satisfaccion_Cliente'].mean().round(2), '\n')
 print(dataframe[['ID_Pedido', 'Satisfaccion_Cliente']].head(10))
+print('\n Resultados encontrados con Satisfaccion mayor a 4.8 \n')
 print(dataframe.loc[dataframe['Satisfaccion_Cliente'] > 4.8, ['ID_Pedido', 'Satisfaccion_Cliente']])
 print('\n Resultados encontrados NULL',dataframe['Satisfaccion_Cliente'].isna().sum())
 print(dataframe['Satisfaccion_Cliente'][::-1].idxmax('index'))
@@ -126,11 +128,18 @@ print(dataframe['Satisfaccion_Cliente'][::-1].idxmax('index'))
 # Descripción: Calcula la media PONDERADA del Costo_Produccion_Unitario_USD utilizando 
 # Materia_Prima_Kg como pesos. Haz este cálculo agrupado por 'Categoria_Producto'.
 # -----------------------------------------------------------------------------------
+print("\n ASIGNACION DE CATEGORIA DE PRODUCTO A CADA PEDIDO \n")
+mediaponderada = dataframe.groupby('Categoria_Producto')['Costo_Produccion_Unitario_USD'].apply(
+    lambda x: (x * dataframe['Materia_Prima_Kg'].sum()) / dataframe['Materia_Prima_Kg'].sum()
+)
+mediaponderada.reset_index()
+print(mediaponderada.head(10))
+
 
 
 
 # -----------------------------------------------------------------------------------
-# EJERCICIO 8: Efficiency Metric: Rendimiento de Materia Prima
+# EJERCICIO 8: Efficiency Metric: Rendimiento de Conversión de Materia Prima
 # Título: Análisis de Rendimiento de Conversión de Materia Prima.
 # Descripción: Crea una columna 'Rendimiento_Materia' (Unidades_Vendidas / Materia_Prima_Kg). 
 # Calcula el rendimiento promedio agrupado por 'Turno_Produccion' y 'Metodo_Produccion'.
